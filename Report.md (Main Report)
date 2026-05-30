@@ -1,0 +1,145 @@
+# CYBER SECURITY INTERNSHIP
+
+## Task 1: Scan Your Local Network for Open Ports
+
+### Submitted By
+
+Tanish Uttam
+
+---
+
+## Objective
+
+To discover devices and open ports within a local network using Nmap and understand the security implications of exposed services.
+
+---
+
+## Tools Used
+
+1. Nmap 7.99
+2. Windows Command Prompt
+3. GitHub
+
+---
+
+## Network Information
+
+| Parameter       | Value           |
+| --------------- | --------------- |
+| IPv4 Address    | 10.250.208.76   |
+| Subnet Mask     | 255.255.255.0   |
+| Default Gateway | 10.250.208.77   |
+| Network Range   | 10.250.208.0/24 |
+
+---
+
+## Procedure
+
+### Step 1: Identify Network Configuration
+
+Command:
+
+```cmd
+ipconfig
+```
+
+Result:
+
+* IPv4 Address: 10.250.208.76
+* Subnet Mask: 255.255.255.0
+* Default Gateway: 10.250.208.77
+
+### Step 2: Perform TCP SYN Scan
+
+Command:
+
+```cmd
+nmap -sS 10.250.208.0/24
+```
+
+This command scans all devices within the local subnet and identifies open TCP ports.
+
+### Step 3: Save Results
+
+Command:
+
+```cmd
+nmap -sS 10.250.208.0/24 -oN scan_results.txt
+```
+
+The scan results were saved for documentation and analysis.
+
+---
+
+## Scan Results
+
+### Host 1
+
+IP Address: 10.250.208.77
+
+| Port | State | Service |
+| ---- | ----- | ------- |
+| 53   | Open  | DNS     |
+
+#### Analysis
+
+DNS service was detected on the gateway device. This is normal behavior because routers commonly provide DNS services to connected devices.
+
+---
+
+### Host 2
+
+IP Address: 10.250.208.76
+
+| Port | State | Service |
+| ---- | ----- | ------- |
+| 135  | Open  | MSRPC   |
+| 139  | Open  | NetBIOS |
+| 445  | Open  | SMB     |
+
+#### Analysis
+
+**Port 135 (MSRPC)**
+
+Used by Microsoft Windows services for communication and remote administration.
+
+**Port 139 (NetBIOS)**
+
+Provides legacy Windows networking and file-sharing services.
+
+**Port 445 (SMB)**
+
+Used for file and printer sharing between Windows devices.
+
+---
+
+## Security Assessment
+
+### DNS (Port 53)
+
+* Low risk
+* Required for domain name resolution
+* Commonly found on routers
+
+### MSRPC (Port 135)
+
+* Medium risk
+* May be targeted if vulnerable services exist
+
+### NetBIOS (Port 139)
+
+* Medium risk
+* Can reveal information about the host
+
+### SMB (Port 445)
+
+* High-value target for attackers
+* Historically exploited by malware and ransomware
+
+---
+
+## Conclusion
+
+The scan identified two active hosts on the network. The gateway exposed DNS services while the local Windows system exposed ports related to Windows networking and file sharing. No suspicious services were discovered. Proper firewall configuration and regular system updates are recommended to minimize security risks.
+
+---
