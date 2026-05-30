@@ -1,0 +1,19 @@
+# Nmap 7.99 scan initiated Fri May 29 16:20:00 2026
+
+Nmap scan report for 10.250.208.77
+Host is up (0.039s latency).
+
+PORT   STATE SERVICE
+53/tcp open  domain
+
+MAC Address: 2E:21:C2:A7:66:D6 (Unknown)
+
+Nmap scan report for 10.250.208.76
+Host is up (0.0010s latency).
+
+PORT    STATE SERVICE
+135/tcp open  msrpc
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Nmap done: 256 IP addresses (2 hosts up) scanned in 24.17 seconds
